@@ -102,7 +102,6 @@ $(document).ready(function() {
     }
     
     $('#seznam-uporabnikov div').click(function() {
-      // V polje za besedilo dodaj predlogo /zasebno {username}
       document.getElementById('poslji-sporocilo').value = ('/zasebno "'+$(this).text()+'"  ');
       $('#poslji-sporocilo').focus();
     });
