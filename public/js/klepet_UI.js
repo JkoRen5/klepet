@@ -96,16 +96,11 @@ $(document).ready(function() {
   
   
   socket.on('dregljaj', function(){
-    // Povzroci tresenje klepetalnice
-    // Inicializiraj rumble na Vsebina
     $('#vsebina').jrumble();
-    // Pricni s tresenjem
     $('#vsebina').trigger('startRumble');
-    // Pocakaj par sekund
     setTimeout(function (){
-      // Ustavi tresenje
       $('#vsebina').trigger('stopRumble');
-    }, 1500); // Zaenkrat 5 sekund, pol zmanjsaj na 1500
+    }, 1500);
     
   });
 
