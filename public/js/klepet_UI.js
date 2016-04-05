@@ -13,7 +13,7 @@ function divElementSlike(vhod) {
   var linki = vhod.split(" ");
   var slike = "";
   for (var i in linki){
-    if (new RegExp("(?:https|http):\/\/.*\.(?:png|jpg|gif)").test(linki[i])){ 
+    if (new RegExp("(?:https|http):\/\/.*\.(?:png|jpg|gif|jpeg)").test(linki[i])){ 
       slike += '<div><img src="'+linki[i]+'" width = 200px></img></div>';
     }
   }
