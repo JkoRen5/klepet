@@ -12,6 +12,20 @@ function divElementHtmlTekst(sporocilo) {
   return $('<div></div>').html('<i>' + sporocilo + '</i>');
 }
 
+function divElementIFrame(vhod) {
+  //Dodaj video z youtuba v sporočilo
+  var linki = vhod.split(" ");
+  var videos = "";
+  for (var i in linki){
+    if (new RegExp("https://www.youtube.com/watch?v=").test(linki[i])){ 
+      // Preostanek naslova je identifikator videa.
+      var id = linki[i].replace("https://www.youtube.com/watch?v=","");
+      videos += '<iframe src="https://www.youtube.com/embed/'+id+'" allowfullscreen></iframe>';
+    }
+  }
+  return $('<div></div>').html(videos);
+}
+
 function procesirajVnosUporabnika(klepetApp, socket) {
   var sporocilo = $('#poslji-sporocilo').val();
   sporocilo = dodajSmeske(sporocilo);
