@@ -105,7 +105,7 @@ $(document).ready(function() {
     setTimeout(function (){
       // Ustavi tresenje
       $('#vsebina').trigger('stopRumble');
-    }, 5000); // Zaenkrat 5 sekund, pol zmanjsaj na 1500
+    }, 1500); // Zaenkrat 5 sekund, pol zmanjsaj na 1500
     
   });
 
