@@ -15,6 +15,7 @@ function divElementHtmlTekst(sporocilo) {
 function procesirajVnosUporabnika(klepetApp, socket) {
   var sporocilo = $('#poslji-sporocilo').val();
   sporocilo = dodajSmeske(sporocilo);
+  sporocilo = dodajSlike(sporocilo);
   var sistemskoSporocilo;
 
   if (sporocilo.charAt(0) == '/') {
@@ -48,6 +49,19 @@ function filtirirajVulgarneBesede(vhod) {
         zamenjava = zamenjava + "*";
       return zamenjava;
     });
+  }
+  return vhod;
+}
+
+function dodajSlike(vhod) {
+  //Ali besedilo vsebuje spletne povezave na slikovne datoteke?
+  var besede = vhod.split(' ');
+  for (var i in besede){
+    var regex = /(https?:\/\/.*\.(?:png|jpg))/i;
+    if (regex.test(i)){
+      // Na originalno besedilo appendaj html element <img>
+      vhod.append('<img src="'+ i +'" width = 200px />');
+    }
   }
   return vhod;
 }
