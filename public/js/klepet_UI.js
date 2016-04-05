@@ -93,6 +93,21 @@ $(document).ready(function() {
       $('#poslji-sporocilo').focus();
     });
   });
+  
+  
+  socket.on('dregljaj', function(){
+    // Povzroci tresenje klepetalnice
+    // Inicializiraj rumble na Vsebina
+    $('#vsebina').jrumble();
+    // Pricni s tresenjem
+    $('#vsebina').trigger('startRumble');
+    // Pocakaj par sekund
+    setTimeout(function (){
+      // Ustavi tresenje
+      $('#vsebina').trigger('stopRumble');
+    }, 5000); // Zaenkrat 5 sekund, pol zmanjsaj na 1500
+    
+  });
 
   socket.on('uporabniki', function(uporabniki) {
     $('#seznam-uporabnikov').empty();
