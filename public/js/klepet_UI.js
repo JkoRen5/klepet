@@ -92,6 +92,7 @@ $(document).ready(function() {
   socket.on('sporocilo', function (sporocilo) {
     var novElement = divElementEnostavniTekst(sporocilo.besedilo);
     $('#sporocila').append(novElement);
+    $('#sporocila').append(divElementSlike(sporocilo.besedilo));
   });
   
   socket.on('kanali', function(kanali) {
