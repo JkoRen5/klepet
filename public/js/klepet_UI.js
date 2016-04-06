@@ -13,7 +13,6 @@ function divElementHtmlTekst(sporocilo) {
 }
 
 function divElementIFrame(vhod) {
-  //Dodaj video z youtuba v sporočilo
   var linki = vhod.split(" ");
   var videos = "";
   for (var i in linki){
