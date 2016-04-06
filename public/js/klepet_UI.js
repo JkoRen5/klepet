@@ -8,6 +8,18 @@ function divElementEnostavniTekst(sporocilo) {
   }
 }
 
+function divElementSlike(vhod) {
+  //Ali besedilo vsebuje spletne povezave na slikovne datoteke?
+  var linki = vhod.split(" ");
+  var slike = "";
+  for (var i in linki){
+    if (new RegExp("(?:https|http):\/\/.*\.(?:png|jpg|gif|jpeg)").test(linki[i])){ 
+      slike += '<div><img src="'+linki[i]+'" width = 200px></img></div>';
+    }
+  }
+  return $('<div></div>').html(slike);
+}
+
 function divElementHtmlTekst(sporocilo) {
   return $('<div></div>').html('<i>' + sporocilo + '</i>');
 }
@@ -26,8 +38,10 @@ function procesirajVnosUporabnika(klepetApp, socket) {
     sporocilo = filtirirajVulgarneBesede(sporocilo);
     klepetApp.posljiSporocilo(trenutniKanal, sporocilo);
     $('#sporocila').append(divElementEnostavniTekst(sporocilo));
+    $('#sporocila').append(divElementSlike(sporocilo));
     $('#sporocila').scrollTop($('#sporocila').prop('scrollHeight'));
   }
+  
 
   $('#poslji-sporocilo').val('');
 }
@@ -51,6 +65,8 @@ function filtirirajVulgarneBesede(vhod) {
   }
   return vhod;
 }
+
+
 
 $(document).ready(function() {
   var klepetApp = new Klepet(socket);
@@ -76,6 +92,7 @@ $(document).ready(function() {
   socket.on('sporocilo', function (sporocilo) {
     var novElement = divElementEnostavniTekst(sporocilo.besedilo);
     $('#sporocila').append(novElement);
+    $('#sporocila').append(divElementSlike(sporocilo.besedilo));
   });
   
   socket.on('kanali', function(kanali) {
