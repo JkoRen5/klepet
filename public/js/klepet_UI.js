@@ -128,6 +128,16 @@ $(document).ready(function() {
       $('#poslji-sporocilo').focus();
     });
   });
+  
+  
+  socket.on('dregljaj', function(){
+    $('#vsebina').jrumble();
+    $('#vsebina').trigger('startRumble');
+    setTimeout(function (){
+      $('#vsebina').trigger('stopRumble');
+    }, 1500);
+    
+  });
 
   socket.on('uporabniki', function(uporabniki) {
     $('#seznam-uporabnikov').empty();
@@ -171,4 +181,6 @@ function dodajSmeske(vhodnoBesedilo) {
       preslikovalnaTabela[smesko] + "' />");
   }
   return vhodnoBesedilo;
+  
+  
 }
